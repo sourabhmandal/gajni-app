@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const friendSchema = mongoose.Schema({
-    note:String,
-    status: String,
-    Date:Date(),
+const todoSchema = mongoose.Schema({
+  note: String,
+  status: String,
+  Date: { type: Date, default: Date.now() },
 });
-module.exports = mongoose.model('Friend',friendSchema);
+module.exports = mongoose.model("Todo", todoSchema);

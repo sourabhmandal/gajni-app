@@ -2,7 +2,7 @@ const express = require("express");
 let router = express.Router({ mergeParams: true });
 const Todo = require("../model/todoModel");
 
-//list of all friends
+//list of all todos
 router.get("/", function (req, res) {
   Todo.find({})
     .then((data) => {
@@ -13,7 +13,7 @@ router.get("/", function (req, res) {
     });
 });
 
-//add a new friend
+//add a new todo
 router.post("/", function (req, res) {
   Todo.find({ note: req.params.note })
     .then((data) => {
@@ -27,7 +27,7 @@ router.post("/", function (req, res) {
     });
 });
 
-//update a friend
+//update a todo
 router.put("/", async function (req, res) {
   const update = req.body;
   const filter = req.query;
@@ -35,9 +35,9 @@ router.put("/", async function (req, res) {
   Todo.findOneAndUpdate(filter, update, {
     returnOriginal: false,
   })
-    .then((friend) => {
-      if (friend) {
-        res.json({ success: true, data: friend });
+    .then((todo) => {
+      if (todo) {
+        res.json({ success: true, data: todo });
       } else {
         res.json({ success: false, data: "no such user exist" });
       }
@@ -47,7 +47,7 @@ router.put("/", async function (req, res) {
     });
 });
 
-//remove a friend
+//remove a todo
 router.delete("/", function (req, res) {
   Todo.findOneAndDelete({ note: req.params.note })
     .then((docs) => {
