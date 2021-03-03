@@ -1,0 +1,55 @@
+@host=http://localhost:3000
+
+### GET home - shows all api routes
+GET {{host}}/api HTTP/1.1
+content-type: application/json
+#############################################################################
+### GET list of all friends
+GET {{host}}/friends HTTP/1.1
+content-type: application/json
+
+### GET a friends
+GET {{host}}/friends HTTP/1.1
+content-type: application/json
+
+### ADD a new friend
+POST {{host}}/friends HTTP/1.1
+content-type: application/json
+
+{
+  "primary_photo": "String",
+  "secondary_photo": [{ "photos": "String" }],
+  "name": "String",
+  "last_visit": [],
+  "description": [{ "notes": "Array" }],
+  "Date": "2021-03-03T02:55:43.941Z",
+  "Place": "String",
+}
+
+@friend=1
+### UPDATE friend
+PUT {{host}}/friends/{{friend}} HTTP/1.1
+content-type: application/json
+
+### DELETE friend
+DELETE {{host}}/friends/{{friend}} HTTP/1.1
+content-type: application/json
+
+#############################################################################
+### GET lsit of all todo
+GET {{host}}/todo HTTP/1.1
+content-type: application/json
+
+### ADD a new todo
+POST {{host}}/todo HTTP/1.1
+content-type: application/json
+
+
+@todo=1
+### UPDATE todo
+PUT {{host}}/todo/{{todo}} HTTP/1.1
+content-type: application/json
+
+### DELETE todo
+DELETE {{host}}/todo/{{todo}} HTTP/1.1
+content-type: application/json
