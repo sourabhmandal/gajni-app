@@ -28,7 +28,7 @@ router.get("/:friend_name", function (req, res) {
 
 //add a new friend
 router.post("/", function (req, res) {
-  let Newuser = new Friend(req.body); // this is modal object.
+  let Newuser = new Todo(req.body); // this is modal object.
 
   Newuser.save()
     .then((data) => {
@@ -44,7 +44,7 @@ router.put("/", async function (req, res) {
   const update = req.body;
   const filter = req.query;
 
-  Friend.findOneAndUpdate(req.params.filter, req.params.update, {
+  Todo.findOneAndUpdate(filter, update, {
     returnOriginal: false,
   })
     .then((friend) => {
