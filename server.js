@@ -20,6 +20,7 @@ app.post("/api", (req, res) => {
 });
 app.use("/friends", friendRouter);
 app.use("/todo", todoRouter);
+app.use("/uploads", express.static("uploads"));
 
 mongoose
   .connect(KEYS.keys.MONGO_URI, {

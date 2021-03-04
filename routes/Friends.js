@@ -1,6 +1,18 @@
 const express = require("express");
 let router = express.Router({ mergeParams: true });
 const Friend = require("../model/friendModel");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, res, next) {
+    next(null, "./uploads");
+  },
+  filename: function (req, file, next) {
+    next(null, (Math.random() * 1000000).toString() + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
 //list of all friends
 router.get("/", function (req, res) {
   Friend.find({})
@@ -27,9 +39,19 @@ router.get("/:friend_name", function (req, res) {
 });
 
 //add a new friend
-router.post("/", function (req, res) {
-  let Newuser = new Todo(req.body); // this is modal object.
-
+router.post("/", upload.single("primary_photo"), function (req, res) {
+  console.log(req.file);
+  let Newuser = new Friend({
+    primary_photo_url:
+      (process.env.port || "http://localhost:3000/") +
+      "uploads/" +
+      req.file.filename,
+    name: req.body.name,
+    description: req.body.notes,
+    date: Date.now(),
+    place: req.body.place,
+  });
+  let imagefile = req.file;
   Newuser.save()
     .then((data) => {
       res.json({ status: "saved", data: data });
