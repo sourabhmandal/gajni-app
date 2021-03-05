@@ -43,7 +43,7 @@ router.post("/", upload.single("primary_photo"), function (req, res) {
   console.log(req.file);
   let Newuser = new Friend({
     primary_photo_url:
-      (process.env.port || "http://localhost:3000/") +
+      "https://gajni-app.herokuapp.com/" +
       "uploads/" +
       req.file.filename,
     name: req.body.name,
