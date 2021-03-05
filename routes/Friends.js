@@ -47,7 +47,7 @@ router.post("/", upload.single("primary_photo"), function (req, res) {
       "uploads/" +
       req.file.filename,
     name: req.body.name,
-    description: req.body.notes,
+    description: req.body.description,
     date: Date.now(),
     place: req.body.place,
   });

@@ -4,7 +4,7 @@ const friendSchema = new mongoose.Schema({
   primary_photo_url: { type: String, required: true },
   secondary_photo: [{ photos: String }],
   name: { type: String, required: true },
-  description: [{ notes: String }],
+  description: {type: Array},
   date: { type: Date, default: Date.now },
   place: String,
 });
